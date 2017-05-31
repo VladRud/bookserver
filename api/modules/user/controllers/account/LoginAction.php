@@ -8,11 +8,6 @@ use app\modules\user\forms\LoginForm;
 use app\modules\setting\helpers\SettingHelper;
 use yii\base\ErrorException;
 
-/**
- * Description of LoginAction
- *
- * @author Stableflow
- */
 class LoginAction extends Action
 {
     public $layout;
