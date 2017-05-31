@@ -5,12 +5,13 @@ namespace api\controllers;
 use Yii;
 use yii\rest\Controller;
 use api\models\LoginForm;
+use api\models\RegistrationForm;
+use api\controllers\CoreController;
 
-class SiteController extends Controller
+class SiteController extends CoreController
 {
-    public function actionIndex()
-    {
-        return 'api';
+    public function actionIndex(){
+        return ['api'];
     }
 
     public function actionLogin()
@@ -24,10 +25,9 @@ class SiteController extends Controller
         }
     }
 
-    protected function verbs()
-    {
-        return [
-            'login' => ['post'],
-        ];
+    public function actionRegistration(){
+        $model = new RegistrationForm();
+        $model->load(Yii::$app->request->getBodyParams(), '');
+        return Yii::$app->request->getBodyParams();
     }
 }

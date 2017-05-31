@@ -11,15 +11,16 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'api\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
     'components' => [
         'request' => [
             'parsers' => [
                 'application/json' => 'yii\web\JsonParser',
-                'application/xml' => 'yii\web\XmlParser',
+                'text/plain' => 'yii\web\JsonParser'
+//                'application/xml' => 'yii\web\XmlParser'
             ],
         ],
         'response' => [
+            'format' => 'json',
             'formatters' => [
                 'json' => [
                     'class' => 'yii\web\JsonResponseFormatter',
@@ -48,14 +49,14 @@ return [
             'showScriptName' => false,
             'rules' => [
                 '' => 'site/index',
-                'auth' => 'site/login',
+                'login' => 'site/login',
+                'registration' => 'site/registration',
 
                 'GET profile' => 'profile/index',
                 'PUT,PATCH profile' => 'profile/update',
-
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'post'],
             ],
         ],
     ],
     'params' => $params,
+    'modules' => require(__DIR__ . '/modules.php'),
 ];
