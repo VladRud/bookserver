@@ -48,9 +48,8 @@ return [
             'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
-                '' => 'site/index',
-                'login' => 'site/login',
-                'registration' => 'site/registration',
+                'login' => 'user/account/login',
+                'registration' => 'user/account/sign-up',
 
                 'GET profile' => 'profile/index',
                 'PUT,PATCH profile' => 'profile/update',

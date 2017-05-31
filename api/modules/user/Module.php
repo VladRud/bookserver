@@ -1,14 +1,10 @@
 <?php
 
-namespace app\modules\user;
-
-use app\modules\user\events\UserEvents;
+namespace app\api\modules\user;
 
 class Module extends \yii\base\Module {
 
-    public $controllerNamespace = 'app\modules\user\controllers';
-    public $loginSuccess = '/';
-    public $logoutSuccess = '/';
+    public $controllerNamespace = 'app\api\modules\user\controllers';
     
     public function init()
     {

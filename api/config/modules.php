@@ -1,9 +1,9 @@
 <?php
 return [
     'core' => [
-        'class' => 'api\modules\core\Module'
+        'class' => 'app\api\modules\core\Module'
     ],
     'user' => [
-        'class' => 'api\modules\user\Module'
+        'class' => 'app\api\modules\user\Module'
     ]
 ];

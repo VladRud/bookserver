@@ -1,11 +1,10 @@
 <?php
 
-namespace app\modules\user\controllers;
+namespace app\api\modules\user\controllers;
 
-use api\modules\core\controllers\CoreController;
-use app\modules\user\controllers\account\LoginAction;
-use app\modules\user\controllers\account\RegisterAction;
-
+use app\api\modules\core\controllers\CoreController;
+use app\api\modules\user\controllers\account\LoginAction;
+use app\api\modules\user\controllers\account\RegisterAction;
 
 use app\modules\user\components\AuthHandler;
 use app\modules\user\controllers\account\ActivateAction;
@@ -18,9 +17,6 @@ use yii\filters\AccessControl;
 
 class AccountController extends CoreController
 {
-
-
-
     public function actions()
     {
         return [
@@ -29,7 +25,6 @@ class AccountController extends CoreController
             ],
             'login' => [
                 'class' => LoginAction::className(),
-                'layout' => '/frontend/main'
             ],
 //
 //            'logout' => [
