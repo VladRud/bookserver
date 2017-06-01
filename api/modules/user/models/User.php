@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\user\models;
+namespace api\modules\user\models;
 
 use Yii;
 use yii\base\NotSupportedException;
@@ -17,6 +17,7 @@ use yii\helpers\Url;
  * Database fields:
  * @property integer $id
  * @property string  $username
+ * @property integer $auth_key
  * @property string  $email
  * @property integer $role
  * @property string  $password

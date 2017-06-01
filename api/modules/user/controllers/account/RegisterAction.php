@@ -1,25 +1,22 @@
 <?php
 
-namespace app\api\modules\user\controllers\account;
+namespace api\modules\user\controllers\account;
 
-use app\modules\user\models\Referral;
 use Yii;
 use yii\base\Action;
-use app\modules\user\forms\RegistrationForm;
-use yii\helpers\Url;
-use yii\web\NotFoundHttpException;
+use api\modules\user\forms\RegistrationForm;
 
 /**
  * Class RegisterAction
- *
- * @author Stableflow
  */
 class RegisterAction extends Action
 {
 
     public function run()
     {
-        return 'adfasdf';
+        $model = new RegistrationForm();
+        $model->load(Yii::$app->request->getBodyParams(), '');
+
 //        $keyStorage = Yii::$app->get('keyStorage');
 //        $inviteSignup = $keyStorage->get('invite_only_signup');
 //
