@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\user\helpers;
+namespace api\modules\user\helpers;
 
 use Yii;
 

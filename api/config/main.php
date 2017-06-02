@@ -34,6 +34,9 @@ return [
             'enableAutoLogin' => false,
             'enableSession' => false,
         ],
+        'userManager' => [
+            'class' => '\api\modules\user\components\UserManager'
+        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [

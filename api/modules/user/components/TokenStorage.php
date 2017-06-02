@@ -3,9 +3,9 @@
 namespace app\modules\user\components;
 
 use \Yii;
-use \app\modules\user\models\User;
+use \api\modules\user\models\User;
 use \app\modules\user\models\Token;
-use \app\helpers\DateHelper;
+use \common\helpers\DateHelper;
 use yii\base\ErrorException;
 
 /**

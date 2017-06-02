@@ -3,7 +3,9 @@
 namespace app\modules\user\models;
 
 use Yii;
-use app\modules\user\models\User;
+use api\modules\user\models\User;
+use common\helpers\DateHelper;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "sf_token".
@@ -19,7 +21,7 @@ use app\modules\user\models\User;
  *
  * @property User $user
  */
-class Token extends \yii\db\ActiveRecord {
+class Token extends ActiveRecord {
     
     const SCENARIO_DEFAULT = 'default';
     
@@ -87,7 +89,7 @@ class Token extends \yii\db\ActiveRecord {
     
     public function updateTokenExpiredTime($expire){
         return $this->updateAttributes([
-            'expire' => \app\helpers\DateHelper::getGTMDatetime(time() + $expire)
+            'expire' => DateHelper::getGTMDatetime(time() + $expire)
         ]);
     }
 

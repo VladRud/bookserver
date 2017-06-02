@@ -15,6 +15,7 @@ class m170209_142729_create_token_table extends Migration
             'id' => $this->primaryKey(),
             'user_id' => $this->integer()->notNull(),
             'token' => $this->string()->notNull()->unique(),
+            'type' => $this->smallInteger()->notNull(),
             'expired_at' => $this->integer()->notNull(),
         ], $tableOptions);
 
