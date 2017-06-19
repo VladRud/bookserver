@@ -19,18 +19,19 @@ class RegistrationForm extends Model
      */
     public function rules() {
         return [
-            ['username', 'required'],
-            ['username', 'match', 'pattern' => '/^[-a-zA-Z0-9_\.@]+$/'],
-            ['username', 'string', 'min' => 3, 'max' => 60],
-            ['username', 'unique', 'targetClass' => User::className()],
+            ['username', 'required', 'message' => 'required'],
+            ['username', 'match', 'pattern' => '/^[-a-zA-Z0-9_\.@]+$/', 'message' => 'valid'],
+            ['username', 'string', 'min' => 3, 'message' => 'minlength'],
+            ['username', 'string', 'max' => 25, 'message' => 'maxlength'],
+            ['username', 'unique', 'targetClass' => User::className(), 'message' => 'unique'],
 
-            ['email', 'required'],
-            ['email', 'email'],
-            ['email', 'string', 'max' => 100],
+            ['email', 'required', 'message' => 'required'],
+            ['email', 'email', 'message' => 'valid'],
+            ['email', 'string', 'max' => 100, 'message' => 'max'],
             ['email', 'trim'],
-            ['email', 'unique', 'targetClass' => User::className()],
+            ['email', 'unique', 'targetClass' => User::className(), 'message' => 'unique'],
 
-            ['password', 'required'],
+            ['password', 'required', 'message' => 'required'],
         ];
     }
 

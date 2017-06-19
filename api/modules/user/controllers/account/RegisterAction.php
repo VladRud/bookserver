@@ -19,13 +19,15 @@ class RegisterAction extends Action
 
         if ($model->load($data, '') && $model->validate()) {
             if ($user = Yii::$app->userManager->createUser($model)) {
-                return $user;
-            } else {
-                return 'false';
-            }
-        }
+                return [
 
-        return $model->errors;
+                ];
+            }
+        } else {
+            return [
+                'errors' => $model->errors
+            ];
+        }
 
     }
 

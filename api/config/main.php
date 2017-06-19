@@ -53,6 +53,7 @@ return [
             'rules' => [
                 'login' => 'user/account/login',
                 'registration' => 'user/account/sign-up',
+                'index' => 'site/index',
 
                 'GET profile' => 'profile/index',
                 'PUT,PATCH profile' => 'profile/update',
