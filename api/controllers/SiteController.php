@@ -14,20 +14,20 @@ class SiteController extends CoreController
         return ['api'];
     }
 
-    public function actionLogin()
-    {
-        $model = new LoginForm();
-        $model->load(Yii::$app->request->bodyParams, '');
-        if ($token = $model->auth()) {
-            return $token;
-        } else {
-            return $model;
-        }
-    }
+//    public function actionLogin()
+//    {
+//        $model = new LoginForm();
+//        $model->load(Yii::$app->request->bodyParams, '');
+//        if ($token = $model->auth()) {
+//            return $token;
+//        } else {
+//            return $model;
+//        }
+//    }
 
-    public function actionRegistration(){
-        $model = new RegistrationForm();
-        $model->load(Yii::$app->request->getBodyParams(), '');
-        return Yii::$app->request->getBodyParams();
-    }
+//    public function actionRegistration(){
+//        $model = new RegistrationForm();
+//        $model->load(Yii::$app->request->getBodyParams(), '');
+//        return Yii::$app->request->getBodyParams();
+//    }
 }

@@ -5,7 +5,7 @@ namespace api\modules\user\controllers\account;
 use Yii;
 use yii\base\Action;
 use app\modules\user\forms\LoginForm;
-use app\modules\setting\helpers\SettingHelper;
+//use app\modules\setting\helpers\SettingHelper;
 use yii\base\ErrorException;
 
 class LoginAction extends Action
@@ -15,27 +15,19 @@ class LoginAction extends Action
     public function run()
     {
         $form = new LoginForm();
+        $data = Yii::$app->request->getBodyParams();
 
-        if ($form->load(Yii::$app->request->post())) {
+        if ($form->load($data, '') && $form->validate()) {
 
-            if ($form->validate() && Yii::$app->authenticationManager->login($form, Yii::$app->getRequest())) {
-                return $this->controller->redirect([Yii::$app->user->identity->returnUrl]);
-            } else {
-                if ($form->hasErrors('password')) {
-//                    $errors = $form->getErrors('password');
-//                        Yii::$app->session->setFlash('error', $errors[0]);
-                }
+            if (Yii::$app->authenticationManager->login($form)) {
+                return $form;
             }
-
+        } else {
+            return [
+                'errors' => $form->errors
+            ];
         }
 
-        if (!empty($this->layout)) {
-            $this->controller->layout = $this->layout;
-        }
-
-        return $this->controller->render($this->id, [
-            'model' => $form
-        ]);
     }
 
 }

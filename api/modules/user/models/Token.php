@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\user\models;
+namespace api\modules\user\models;
 
 use Yii;
 use api\modules\user\models\User;
@@ -8,7 +8,7 @@ use common\helpers\DateHelper;
 use yii\db\ActiveRecord;
 
 /**
- * This is the model class for table "sf_token".
+ * This is the model class for table "vr_token".
  *
  * @property integer $id
  * @property integer $user_id
@@ -23,33 +23,11 @@ use yii\db\ActiveRecord;
  */
 class Token extends ActiveRecord {
     
-    const SCENARIO_DEFAULT = 'default';
-    
-    const TYPE_RECOVERY = 1;
-    const TYPE_ACTIVATE = 2;
-    const TYPE_CHANGE_PASSWORD = 3;
-    const TYPE_ACCESS = 4;
-    const TYPE_OAUTH_TEMP_USER = 5;
-
-    const STATUS_NEW = 0;
-    const STATUS_ACTIVATE = 1;
-    const STATUS_FAIL = 2;
-
-    /**
-     * @inheritdoc
-     */
     public static function tableName() {
         return '{{%token}}';
     }
 
-    /** @inheritdoc */
-    public static function primaryKey() {
-        return ['user_id', 'code', 'type'];
-    }
 
-    /**
-     * @inheritdoc
-     */
     public function rules() {
         return [
             [['user_id', 'code', 'create_date', 'type', 'expire', 'status', 'ip'], 'required'],
@@ -59,31 +37,12 @@ class Token extends ActiveRecord {
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function scenarios() {
-        return [
-            'default' => ['*']
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels() {
-        return [
-            'user_id' => Yii::t('app', 'User ID'),
-            'code' => Yii::t('app', 'Code'),
-            'create_date' => Yii::t('app', 'Create Date'),
-            'type' => Yii::t('app', 'Type'),
-        ];
-    }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUser() {
+    public function getUser()
+    {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
     

@@ -1,19 +1,20 @@
 <?php
 
-namespace app\modules\user\components;
+namespace api\modules\user\components;
 
 use \Yii;
 use \api\modules\user\models\User;
-use \app\modules\user\models\Token;
+use \api\modules\user\models\Token;
 use \common\helpers\DateHelper;
 use yii\base\ErrorException;
+use yii\base\Component;
 
 /**
  * Class TokenStorage
  *
  * @author Stableflow
  */
-class TokenStorage extends \yii\base\Component
+class TokenStorage extends Component
 {
 
     public function init()

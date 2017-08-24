@@ -1,11 +1,11 @@
 <?php
 
-namespace app\modules\user\forms;
+namespace api\modules\user\forms;
 
 use Yii;
 use yii\base\Model;
-use app\modules\user\models\User;
-use app\modules\user\helpers\Password;
+use api\modules\user\models\User;
+use api\modules\user\helpers\Password;
 use yii\web\IdentityInterface;
 
 /**
@@ -23,7 +23,6 @@ class LoginForm extends Model {
      */
     public function rules() {
         return [
-
             // Username
             [['username'], 'required'],
             [['username'], 'trim'],
@@ -31,16 +30,6 @@ class LoginForm extends Model {
             // Password
             [['password'], 'validatePassword'],
             [['password'], 'required'],
-
-            [['rememberMe'], 'boolean'],
-        ];
-    }
-
-    public function attributeLabels() {
-        return[
-            'username'      => Yii::t('user', 'Email or Username'),
-            'password'      => Yii::t('user', 'Password'),
-            'rememberMe'    => Yii::t('user', 'Remember me'),
         ];
     }
 

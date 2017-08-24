@@ -2,12 +2,10 @@
 
 namespace api\modules\user\models;
 
-use Yii;
-use yii\base\NotSupportedException;
 use yii\db\ActiveRecord;
 use api\modules\user\helpers\Password;
-use app\modules\user\models\UserMeta;
-use yii\helpers\Url;
+use common\helpers\DateHelper;
+use api\modules\user\models\Token;
 
 /**
  * Description of User
@@ -75,20 +73,45 @@ class User extends ActiveRecord
     }
 
     /**
-     * Register new user
-     * @param User $referral
-     * @return boolean
+     * Finds a user by the given username or email.
+     *
+     * @param  string      $usernameOrEmail Username or email to be used on search.
+     * @return User
      */
-    public function register($referral = null) {
-        $this->status = static::STATUS_APPROVED;
-        if ($this->save()) {
-            if (null !== $referral) {
-                Referral::linkReferral($referral->id, $this->id);
-            }
-            Yii::$app->user->login($this);
-            return true;
+    public function findUserByUsernameOrEmail($usernameOrEmail) {
+        if (filter_var($usernameOrEmail, FILTER_VALIDATE_EMAIL)) {
+            return $this->findUserByEmail($usernameOrEmail);
         }
-        return false;
+        return $this->findUserByUsername($usernameOrEmail);
+    }
+
+    public function getToken()
+    {
+        return $this->hasMany(Token::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * Finds a user by the given email.
+     *
+     * @param  string      $email Email to be used on search.
+     * @return User
+     */
+    public function findUserByEmail($email) {
+        return self::findOne(['email' => $email]);
+    }
+
+    /**
+     * Finds a user by the given username.
+     *
+     * @param  string      $username Username to be used on search.
+     * @return User
+     */
+    public function findUserByUsername($username) {
+        return self::findOne(['username' => $username]);
+    }
+
+    public function generateToken() {
+
     }
 
 }

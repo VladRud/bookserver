@@ -3,6 +3,8 @@
 namespace api\modules\core\controllers;
 
 use yii\rest\Controller;
+use yii\filters\auth\HttpBasicAuth;
+use yii\filters\Cors;
 
 class CoreController extends Controller
 {
@@ -10,12 +12,16 @@ class CoreController extends Controller
     {
         $behaviors = parent::behaviors();
         $behaviors['corsFilter'] = [
-            'class' => \yii\filters\Cors::className(),
+            'class' => Cors::className(),
             'cors' => [
                 'Origin'                           => ['*'],
                 'Access-Control-Allow-Credentials' => true,
                 'Access-Control-Max-Age'           => 3600,
+                'Access-Control-Request-Headers'   => ['*'],
             ]
+        ];
+        $behaviors['authenticator'] = [
+            'class' => HttpBasicAuth::className(),
         ];
 
         return $behaviors;

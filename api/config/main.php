@@ -30,9 +30,9 @@ return [
             ],
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
-            'enableAutoLogin' => false,
+            'identityClass' => 'api\modules\models\User',
             'enableSession' => false,
+            'loginUrl' => null
         ],
         'userManager' => [
             'class' => '\api\modules\user\components\UserManager'
@@ -54,9 +54,6 @@ return [
                 'login' => 'user/account/login',
                 'registration' => 'user/account/sign-up',
                 'index' => 'site/index',
-
-                'GET profile' => 'profile/index',
-                'PUT,PATCH profile' => 'profile/update',
             ],
         ],
     ],

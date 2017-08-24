@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\user\events;
+namespace api\modules\user\events;
 
 /**
  * Description of UserEvents
