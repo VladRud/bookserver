@@ -51,6 +51,7 @@ return [
             'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
+                '' => 'site/index',
                 'login' => 'user/account/login',
                 'registration' => 'user/account/sign-up',
                 'index' => 'site/index',

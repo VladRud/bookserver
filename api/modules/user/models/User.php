@@ -85,10 +85,10 @@ class User extends ActiveRecord
         return $this->findUserByUsername($usernameOrEmail);
     }
 
-    public function getToken()
-    {
-        return $this->hasMany(Token::className(), ['user_id' => 'id']);
-    }
+//    public function getToken()
+//    {
+//        return $this->hasMany(Token::className(), ['user_id' => 'id']);
+//    }
 
     /**
      * Finds a user by the given email.
@@ -114,4 +114,19 @@ class User extends ActiveRecord
 
     }
 
+    /**
+     * Register new user
+     * @param User $referral
+     * @return boolean
+     */
+    public function register($referral = null) {
+        $this->status = static::STATUS_APPROVED;
+        if ($this->save()) {
+            if (null !== $referral) {
+                Referral::linkReferral($referral->id, $this->id);
+            }
+            return true;
+        }
+        return false;
+    }
 }

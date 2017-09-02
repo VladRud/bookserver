@@ -8,6 +8,8 @@ use yii\filters\Cors;
 
 class CoreController extends Controller
 {
+//    public $enableCsrfValidation = false;
+
     public function behaviors()
     {
         $behaviors = parent::behaviors();

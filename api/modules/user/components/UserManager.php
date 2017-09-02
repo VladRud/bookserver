@@ -10,6 +10,7 @@ use \api\modules\user\models\User;
 use \api\modules\user\helpers\Password;
 use \api\modules\user\components\TokenStorage;
 use yii\base\Component;
+use yii\helpers\ArrayHelper;
 
 /**
  * Class UserManager
@@ -48,8 +49,11 @@ class UserManager extends Component
         $data = $form->getAttributes();
 
         $user->setAttributes($data);
+        $user->password             = Password::hash(ArrayHelper::getValue($data, 'password'));
+        $user->created_at           = DateHelper::getCurrentDateTime();
+        $user->status               = User::STATUS_PENDING;
 
-        if ($user->validate() && $user->register()) {
+        if ($user->validate() && $user->save()) {
             return [
                 'success' => true
             ];
